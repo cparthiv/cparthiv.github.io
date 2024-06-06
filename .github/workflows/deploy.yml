@@ -13,16 +13,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-
       - name: Install wget
         run: sudo apt-get install -y wget
 
       - name: Download Adobe Express Site
-        run: wget --mirror --convert-links --adjust-extension --page-requisites --no-parent https://new.express.adobe.com/webpage/IOgf3Dq4Ut50x -P ./public
+        run: |
+          mkdir -p public
+          wget --mirror --convert-links --adjust-extension --page-requisites --no-parent https://new.express.adobe.com/webpage/IOgf3Dq4Ut50x -P public
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
